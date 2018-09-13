@@ -5,6 +5,7 @@ import './App.css';
 import { fetchHouseData } from '../../utils/apiCalls'
 import { connect } from 'react-redux';
 import { setHouseData  } from '../../actions';
+import { HouseContainer } from '../HouseContainer/'
 class App extends Component {
 
 componentDidMount() {
@@ -13,9 +14,7 @@ componentDidMount() {
 
 setHouseData = async () => {
   const houseData = await fetchHouseData()
-  this.state = ({
-    houseData
-  })
+  this.props.setHouseData(houseData)
 }
 
   render() {
@@ -30,6 +29,7 @@ setHouseData = async () => {
           }}> FAKE ACTION</button>
         </div>
         <div className='Display-info'>
+        <HouseContainer />
         </div>
       </div>
     );
@@ -37,14 +37,13 @@ setHouseData = async () => {
 }
 
 App.propTypes = {
-  fake: shape({ fake: string }),
-  fakeAction: func.isRequired
+
 };
 
 const mapStateToProps = (state) => ({ 
   houseData: state.houseData
 });
 const mapDispatchToProps = dispatch => ({ 
-  setHouseData: (houseData) => dispatch(setHouseData())
+  setHouseData: (houseData) => dispatch(setHouseData(houseData))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(App);
