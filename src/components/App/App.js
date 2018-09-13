@@ -5,7 +5,8 @@ import './App.css';
 import { fetchHouseData } from '../../utils/apiCalls'
 import { connect } from 'react-redux';
 import { setHouseData  } from '../../actions';
-import { HouseContainer } from '../HouseContainer/'
+import { HouseContainer } from '../HouseContainer/HouseContainer'
+
 class App extends Component {
 
 componentDidMount() {
@@ -41,7 +42,7 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({ 
-  houseData: state.houseData
+  // houseData: state.houseData
 });
 const mapDispatchToProps = dispatch => ({ 
   setHouseData: (houseData) => dispatch(setHouseData(houseData))
