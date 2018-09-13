@@ -3,6 +3,7 @@ import PropTypes, { shape, func, string } from 'prop-types';
 import logo from './logo.svg';
 import './App.css';
 import { fetchHouseData } from '../../utils/apiCalls'
+import { houseDataCleaner } from '../../utils/dataCleaner'
 import { connect } from 'react-redux';
 import { setHouseData  } from '../../actions';
 import { HouseContainer } from '../HouseContainer/HouseContainer'
@@ -10,12 +11,16 @@ import { HouseContainer } from '../HouseContainer/HouseContainer'
 class App extends Component {
 
 componentDidMount() {
-  this.setHouseData()
+  fetchHouseData()
 }
 
 setHouseData = async () => {
-  const houseData = await fetchHouseData()
+  const houseData = await houseDataCleaner()
   this.props.setHouseData(houseData)
+}
+
+toggleHouse = () => {
+
 }
 
   render() {
@@ -25,9 +30,8 @@ setHouseData = async () => {
           <img src={logo} className='App-logo' alt='logo' />
           <h2>Welcome to Westeros</h2>
           <button onClick={() => {
-            this.props.fakeAction();
-            alert(this.props.fake);
-          }}> FAKE ACTION</button>
+            this.props.toggleHouse();
+          }}> F</button>
         </div>
         <div className='Display-info'>
         <HouseContainer />

@@ -12,7 +12,7 @@ export const HouseContainer = ({ houses }) => {
 } 
 
 export const mapStateToProps = state => ({
-  houses: state.houseData 
+  houses: state.houseData,
 });
 
 
