@@ -5,7 +5,7 @@ import './App.css';
 import { fetchSwornMembers } from '../../utils/apiCalls'
 import { houseDataCleaner } from '../../utils/dataCleaner'
 import { connect } from 'react-redux';
-import { setHouseData, toggleSworn  } from '../../actions';
+import { setHouseData } from '../../actions';
 import HouseContainer from '../HouseContainer/HouseContainer'
 
 class App extends Component {
@@ -38,9 +38,27 @@ fetchHouseData = async () => {
   } 
 }
 
-toggleSworn = async (id) => {
-  const swornMembers = fetchSwornMembers(id)
-  // this.props.toggleSworn(id)
+getSwornMembers = () => {
+  const { houses } = this.props
+  const swornMembers = houses.map(house => house.swornMembers)
+  const swornUrls = swornMembers.map(member => {
+    const urlId = member.map(url => {
+
+      const id = url
+      return url
+    })
+    return member
+  })
+  debugger;
+
+  return swornMembers
+}
+
+fetchSwornMembers = async (id) => {
+  const url = `http://localhost:3001/api/v1/character/:${id}`
+  const response = await fetch(url)
+  const result = await response.json()
+  return Promise.all(result)
 }
 
   render() {
@@ -56,9 +74,7 @@ toggleSworn = async (id) => {
         <div className='App-header'>
           <img src={logo} className='App-logo' alt='logo' />
           <h2>Welcome to Westeros</h2>
-          <button onClick={() => {
-            this.toggleSworn();
-          }}> F</button>
+          <button onClick={() => this.getSwornMembers()}/>
         </div>
         <div className='Display-info'>
         <HouseContainer />
@@ -71,11 +87,10 @@ toggleSworn = async (id) => {
 
 
 const mapStateToProps = (state) => ({ 
-    
+  houses: state.houseData
 });
 
 const mapDispatchToProps = dispatch => ({ 
   setHouseData: (houseData) => dispatch(setHouseData(houseData)),
-  toggleSworn: (swornMember) => dispatch(toggleSworn(swornMember))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(App);

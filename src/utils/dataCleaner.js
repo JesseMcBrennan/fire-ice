@@ -1,6 +1,6 @@
-import { apiCalls } from './apiCalls'
+// import { apiCalls } from './apiCalls'
 
-export const houseDataCleaner = (result) => {
-  const cleanData = result
-  return cleanData
-}
+// export const swornMemberDataCleaner = (result) => {
+//   const cleanData = result
+//   return cleanData
+// }

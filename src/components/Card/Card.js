@@ -17,10 +17,6 @@ const Card = ({house}) => {
   )
 }
 
-export const mapStateToProps = state => ({
-  toggleSworn: state.toggleSworn
-});
-
 const mapDispatchToProps = dispatch => ({ 
   
 });

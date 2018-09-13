@@ -4,7 +4,4 @@ export const setHouseData = (houseData) => ({
   houseData
 });
 
-export const toggleSworn = (swornMember) => ({
-  type: 'TOGGLE_SWORN',
-  swornMember
-})
+

@@ -4,7 +4,6 @@ import { fetchHouseData } from '../../utils/apiCalls'
 import Card from '../Card/Card'
 
 const HouseContainer = ({ houses,  }) => {
-  console.log(houses)
   const displayHouses = houses.map(house => (
     <Card 
       {...house}
