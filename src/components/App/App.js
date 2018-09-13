@@ -2,9 +2,21 @@ import React, { Component } from 'react';
 import PropTypes, { shape, func, string } from 'prop-types';
 import logo from './logo.svg';
 import './App.css';
+import { fetchHouseData } from '../../utils/apiCalls'
 import { connect } from 'react-redux';
-import { fakeAction } from '../../actions';
+import { setHouseData  } from '../../actions';
 class App extends Component {
+
+componentDidMount() {
+  this.setHouseData()
+}
+
+setHouseData = async () => {
+  const houseData = await fetchHouseData()
+  this.state = ({
+    houseData
+  })
+}
 
   render() {
     return (
@@ -29,8 +41,10 @@ App.propTypes = {
   fakeAction: func.isRequired
 };
 
-const mapStateToProps = ({ fake }) => ({ fake });
-const mapDispatchToProps = dispatch => ({ fakeAction:
-  () => dispatch(fakeAction())
+const mapStateToProps = (state) => ({ 
+  houseData: state.houseData
+});
+const mapDispatchToProps = dispatch => ({ 
+  setHouseData: (houseData) => dispatch(setHouseData())
 });
 export default connect(mapStateToProps, mapDispatchToProps)(App);
