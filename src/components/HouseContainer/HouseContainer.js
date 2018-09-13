@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchHouseData } from '../../utils/apiCalls'
+import { Card } from '../Card/Card'
 
 export const HouseContainer = ({ houses }) => {
-  // debugger;
-  // const displayHouses = houses.map(house => )
+  const displayHouses = houses.map(house => 
+      <Card 
+        {...house}
+      />)
   return(
     <div>
     </div>
@@ -12,7 +15,7 @@ export const HouseContainer = ({ houses }) => {
 } 
 
 export const mapStateToProps = state => ({
-  houses: state.houseData,
+  houses: state.houseData
 });
 
 

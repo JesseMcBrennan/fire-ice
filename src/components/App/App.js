@@ -11,11 +11,11 @@ import { HouseContainer } from '../HouseContainer/HouseContainer'
 class App extends Component {
 
 componentDidMount() {
-  fetchHouseData()
+  this.setHouseData()
 }
 
 setHouseData = async () => {
-  const houseData = await houseDataCleaner()
+  const houseData = await fetchHouseData()
   this.props.setHouseData(houseData)
 }
 
