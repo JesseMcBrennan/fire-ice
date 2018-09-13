@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchHouseData } from '../../utils/apiCalls'
-import { Card } from '../Card/Card'
+import Card from '../Card/Card'
 
-export const HouseContainer = ({ houses }) => {
-  const displayHouses = houses.map(house => 
-      <Card 
-        {...house}
-      />)
-  return(
-    <div>
+const HouseContainer = ({ houses,  }) => {
+  console.log(houses)
+  const displayHouses = houses.map(house => (
+    <Card 
+      {...house}
+      house={house}
+    />
+  ))
+  return (
+    <div className="Container">
+      {displayHouses}
     </div>
   )
 } 
